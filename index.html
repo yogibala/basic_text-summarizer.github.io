@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Text Processing with FastAPI</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $('#process-btn').click(function() {
+          var inputText = $('#input-text').val();
+          $.ajax({
+            type: 'POST',
+            url: 'http://127.0.0.1:8000',
+            data: JSON.stringify({'text': inputText}),
+            contentType: 'application/json',
+            success: function(data) {
+              $('#output-text').val(data.result);
+            }
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Text Processing with FastAPI</h1>
+    <label for="input-text">Input Text:</label>
+    <input type="text" id="input-text">
+    <button id="process-btn">Process</button>
+    <br>
+    <label for="output-text">Output Text:</label>
+    <textarea id="output-text" rows="10" cols="50" readonly></textarea>
+  </body>
+</html>
